@@ -1,7 +1,11 @@
 
-local grid
+local grid = CreateFrame("Frame", nil, UIParent)
+grid:Hide()
+grid:SetAllPoints(UIParent)
+grid:SetScript('OnShow', UpdateGridLayout)
+
 local gridSize = 64
-local dirty
+local dirty = true
 local heap = {}
 local textures = {}
 
@@ -41,36 +45,33 @@ local function UpdateGridLayout()
 	end
 end
 
-local function CreateGrid()
-	grid = CreateFrame("Frame", nil, UIParent)
-	grid:Hide()
-	grid:SetAllPoints(UIParent)
-	grid:SetScript('OnShow', UpdateGridLayout)
-	dirty = true
-end
-
 SLASH_ALIGNHELPER1 = "/align"
 function SlashCmdList.ALIGNHELPER(arg)
 	local newSize = tonumber(arg)
 	if newSize ~= nil then
 		if newSize ~= gridSize then
 			gridSize = newSize
-			if grid then
-				dirty = true
-				if grid:IsShown() then
-					UpdateGridLayout()
-				end
+			dirty = true
+			if grid:IsShown() then
+				UpdateGridLayout()
 			end
 		end
 		return
-	end
-	if not grid then
-		CreateGrid()
 	end
 	if grid:IsShown() then
 		grid:Hide()
 	else
 		grid:Show()
+	end
+end
+
+CONFIGMODE_CALLBACKS = CONFIGMODE_CALLBACKS or {}
+
+function CONFIGMODE_CALLBACKS.AlignHelper(action)
+	if action == "ON" then
+		grid:Show()
+	elseif action == "OFF" then
+		grid:Hide()
 	end
 end
 
