@@ -2,7 +2,6 @@
 local grid = CreateFrame("Frame", nil, UIParent)
 grid:Hide()
 grid:SetAllPoints(UIParent)
-grid:SetScript('OnShow', UpdateGridLayout)
 
 local gridSize = 64
 local dirty = true
@@ -44,6 +43,7 @@ local function UpdateGridLayout()
 		SetupTexture(width, lineWidth, 'BOTTOM', 0, y + lineWidth / 2, unpack(color))
 	end
 end
+grid:SetScript('OnShow', UpdateGridLayout)
 
 SLASH_ALIGNHELPER1 = "/align"
 function SlashCmdList.ALIGNHELPER(arg)
