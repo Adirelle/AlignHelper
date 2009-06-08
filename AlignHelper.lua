@@ -3,7 +3,7 @@ local grid = CreateFrame("Frame", nil, UIParent)
 grid:Hide()
 grid:SetAllPoints(UIParent)
 
-local gridSize = 64
+AlignHelper_GridSize = 64
 local dirty = true
 local heap = {}
 local textures = {}
@@ -33,6 +33,7 @@ local function UpdateGridLayout()
 	end
 	wipe(textures)
 	
+	local gridSize = AlignHelper_GridSize
 	local width, height = math.floor(GetScreenWidth()), math.floor(GetScreenHeight())
 	for x = (width%(gridSize*2))/2, width, gridSize do
 		local color = (math.abs(x*2 - width) < gridSize) and RED or BLACK
@@ -49,8 +50,8 @@ SLASH_ALIGNHELPER1 = "/align"
 function SlashCmdList.ALIGNHELPER(arg)
 	local newSize = tonumber(arg)
 	if newSize ~= nil then
-		if newSize ~= gridSize then
-			gridSize = newSize
+		if newSize ~= AlignHelper_GridSize then
+			AlignHelper_GridSize = newSize
 			dirty = true
 			if grid:IsShown() then
 				UpdateGridLayout()
