@@ -8,6 +8,7 @@
 
 ## LoadManagers: AddonLoader
 ## X-LoadOn-Slash: /align
-## X-LoadOn-Execute: CONFIGMODE_CALLBACKS = CONFIGMODE_CALLBACKS or {} function CONFIGMODE_CALLBACKS.AlignHelper(...) CONFIGMODE_CALLBACKS.AlignHelper = nil AddonLoader:LoadAddOn("AlignHelper") return CONFIGMODE_CALLBACKS.AlignHelper(...) end
+
+## X-ConfigMode: true
 
 AlignHelper.lua
