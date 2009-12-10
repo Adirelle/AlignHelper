@@ -1,6 +1,7 @@
 
 local grid = CreateFrame("Frame", nil, UIParent)
 grid:Hide()
+grid:SetAlpha(0.5)
 grid:SetAllPoints(UIParent)
 
 AlignHelper_GridSize = 64
@@ -13,9 +14,8 @@ local lineWidth = 1
 local function SetupTexture(width, height, point, x, y, r, g, b)
 	local tex = tremove(heap) or grid:CreateTexture(nil, 'BACKGROUND') 
 	textures[tex] = true
-	tex:SetTexture(r, g, b, 0.5) 
-	tex:SetWidth(width)
-	tex:SetHeight(height)
+	tex:SetColorTexture(r, g, b)
+	tex:SetSize(width, height)
 	tex:SetPoint(point, grid, point, x, y)
 	return tex
 end
