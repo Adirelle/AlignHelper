@@ -1,4 +1,4 @@
-## Interface: 30100
+## Interface: 30300
 ## Title: Align Helper
 ## Notes: Show a grid to ease frame layout.
 ## Version: @project-version@
